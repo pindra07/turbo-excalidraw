@@ -1,6 +1,11 @@
-# turbo repo 101
+# learning turborepo(monorepo) by building excalidraw clone...
 
+### Tech Stack
+- turborepo as a monorepo
+- Next.JS
+- Web Sockets
+- Http Server (in node)
+- Prisma and Postgres (for database)
+- 
 
-# How to Structure turborepo 
-- How to manage packages to share amongst codebases
 
