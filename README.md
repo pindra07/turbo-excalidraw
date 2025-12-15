@@ -6,6 +6,6 @@
 - Web Sockets
 - Http Server (in node)
 - Prisma and Postgres (for database)
-- 
+- pnpm as a package manager
 
 
