@@ -12,7 +12,9 @@ import {
 import {prismaClient} from "@repo/db/client"
 const app = express();
 
-app.post("/signup", (req, res) => {
+
+// username, password, email
+app.post("/signup", async (req, res) => {
   const data = CreateUserSchema.safeParse(req.body);
   if (!data.success) {
     return res.json({
@@ -21,6 +23,13 @@ app.post("/signup", (req, res) => {
   }
   const username = req.body.username;
   const password = req.body.password;
+  const email = req.body.email;
+
+  const newUser = await prismaClient.User.findUnique({
+    where: {email: email}
+  })
+
+  if (newUser)
 
   // user.findOne({username, password})
   // if found user... user already exist...
