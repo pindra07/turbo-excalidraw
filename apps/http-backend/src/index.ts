@@ -11,7 +11,7 @@ import {
 
 import {prismaClient} from "@repo/db/client"
 const app = express();
-
+const prisma = prismaClient()
 
 // username, password, email
 app.post("/signup", async (req, res) => {
@@ -25,11 +25,7 @@ app.post("/signup", async (req, res) => {
   const password = req.body.password;
   const email = req.body.email;
 
-  const newUser = await prismaClient.User.findUnique({
-    where: {email: email}
-  })
 
-  if (newUser)
 
   // user.findOne({username, password})
   // if found user... user already exist...
