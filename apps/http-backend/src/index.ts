@@ -9,21 +9,31 @@ import {
   CreateRoomSchema,
 } from "@repo/common/types";
 
-import {prismaClient} from "@repo/db/client"
+import { prismaClient } from "@repo/db/client";
 const app = express();
 
 // username, password, email
 app.post("/signup", async (req, res) => {
-  const data = CreateUserSchema.safeParse(req.body);
-  if (!data.success) {
+  const parsedData = CreateUserSchema.safeParse(req.body);
+  if (!parsedData.success) {
     return res.json({
       message: "Incorrect Input",
     });
   }
-  const username = req.body.username;
-  const password = req.body.password;
-  const email = req.body.email;
 
+  try {
+    await prismaClient.user.create({
+      data: {
+        email: parsedData.data?.username,
+        password: parsedData.data.password,
+        name: parsedData.data.username,
+      },
+    });
+  } catch (e) {
+    res.status(411).json({
+      message: "User already exists...",
+    });
+  }
 
   // user.findOne({username, password})
   // if found user... user already exist...
