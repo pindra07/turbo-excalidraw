@@ -35,3 +35,8 @@ model Chat {
   room     Room    @relation(fields: [roomId], references: [id])
   user     User   @relation(fields: [userId], references: [id])
 }
+
+// Search..............................................
+// transaction in prisma & sql databases(psql)
+// foreign keys in sql (psql) && connections in mongoDB
+// relationships in sql (psql) && prisma
