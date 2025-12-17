@@ -11,7 +11,6 @@ import {
 
 import {prismaClient} from "@repo/db/client"
 const app = express();
-const prisma = prismaClient()
 
 // username, password, email
 app.post("/signup", async (req, res) => {
@@ -24,7 +23,6 @@ app.post("/signup", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
-
 
 
   // user.findOne({username, password})
