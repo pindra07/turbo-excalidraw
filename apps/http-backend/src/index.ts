@@ -9,7 +9,7 @@ import {
   CreateRoomSchema,
 } from "@repo/common/types";
 
-import { prisma } from "@repo/db/client";
+// import { prisma } from "@repo/db/client";
 
 const app = express();
 
@@ -22,19 +22,19 @@ app.post("/signup", async (req, res) => {
     });
   }
 
-  try {
-    await prisma.user.create({
-      data: {
-        email: parsedData.data?.username,
-        password: parsedData.data.password,
-        name: parsedData.data.username,
-      },
-    });
-  } catch (e) {
-    res.status(411).json({
-      message: "User already exists...",
-    });
-  }
+  // try {
+  //   await prisma.user.create({
+  //     data: {
+  //       email: parsedData.data?.username,
+  //       password: parsedData.data.password,
+  //       name: parsedData.data.username,
+  //     },
+  //   });
+  // } catch (e) {
+  //   res.status(411).json({
+  //     message: "User already exists...",
+  //   });
+  // }
 
   // user.findOne({username, password})
   // if found user... user already exist...
