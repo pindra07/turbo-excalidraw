@@ -9,6 +9,8 @@ import {
   CreateRoomSchema,
 } from "@repo/common/types";
 
+import { prisma } from "@repo/db/client";
+
 const app = express();
 
 // username, password, email
@@ -21,7 +23,7 @@ app.post("/signup", async (req, res) => {
   }
 
   try {
-    await prismaClient.user.create({
+    await prisma.user.create({
       data: {
         email: parsedData.data?.username,
         password: parsedData.data.password,
