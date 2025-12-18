@@ -9,7 +9,6 @@ import {
   CreateRoomSchema,
 } from "@repo/common/types";
 
-import { prismaClient } from "@repo/db/client";
 const app = express();
 
 // username, password, email
