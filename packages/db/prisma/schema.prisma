@@ -1,7 +1,8 @@
 
+
 generator client {
   provider = "prisma-client"
-  output   = "../generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -41,5 +42,3 @@ model Chat {
 // foreign keys in sql (psql) && connections in mongoDB
 // relationships in sql 
 // references in sql(psql)
-
-

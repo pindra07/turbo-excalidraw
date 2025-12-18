@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "exports": {
+    "./client": "./index.ts"
   },
-  "devDependencies": {
-    "@repo/typescript-config": "workspace:*"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "prisma generate",
+    "migrate": "prisma migrate dev",
+    "studio": "prisma studio"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +18,11 @@
   "dependencies": {
     "@prisma/adapter-pg": "^7.2.0",
     "@prisma/client": "^7.2.0",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
     "@types/node": "^22.15.3",
-    "prisma": "^7.2.0"
+    "prisma": "^7.2.0",
+    "@repo/typescript-config": "workspace:*"
   }
 }

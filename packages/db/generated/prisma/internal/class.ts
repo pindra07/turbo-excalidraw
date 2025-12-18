@@ -12,7 +12,7 @@
  */
 
 import * as runtime from "@prisma/client/runtime/client"
-import type * as Prisma from "./prismaNamespace.js"
+import type * as Prisma from "./prismaNamespace.ts"
 
 
 const config: runtime.GetPrismaClientConfig = {
@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.2.0",
   "engineVersion": "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3",
   "activeProvider": "postgresql",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel User {\n  id       String  @id @default(uuid())\n  email    String? @unique\n  password String\n  name     String\n  photo    String?\n  rooms    Room[] // one to many relationships &&  you have to introduce it to both the places...\n  chats    Chat[]\n}\n\nmodel Room {\n  id        Int      @id @default(autoincrement())\n  slug      String   @unique\n  createdAt DateTime @default(now())\n  admidId   String\n  admin     User     @relation(fields: [admidId], references: [id]) // relationships in prisma\n  chats     Chat[]\n}\n\nmodel Chat {\n  id      Int    @id @default(autoincrement())\n  roomId  Int\n  message String\n  userId  String\n  room    Room   @relation(fields: [roomId], references: [id])\n  user    User   @relation(fields: [userId], references: [id])\n}\n\n// Search..............................................\n// transaction in prisma & sql databases(psql)\n// foreign keys in sql (psql) && connections in mongoDB\n// relationships in sql \n// references in sql(psql)\n",
+  "inlineSchema": "// packages/db/prisma/schema.prisma\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel User {\n  id       String  @id @default(uuid())\n  email    String? @unique\n  password String\n  name     String\n  photo    String?\n  rooms    Room[] // one to many relationships &&  you have to introduce it to both the places...\n  chats    Chat[]\n}\n\nmodel Room {\n  id        Int      @id @default(autoincrement())\n  slug      String   @unique\n  createdAt DateTime @default(now())\n  admidId   String\n  admin     User     @relation(fields: [admidId], references: [id]) // relationships in prisma\n  chats     Chat[]\n}\n\nmodel Chat {\n  id      Int    @id @default(autoincrement())\n  roomId  Int\n  message String\n  userId  String\n  room    Room   @relation(fields: [roomId], references: [id])\n  user    User   @relation(fields: [userId], references: [id])\n}\n\n// Search..............................................\n// transaction in prisma & sql databases(psql)\n// foreign keys in sql (psql) && connections in mongoDB\n// relationships in sql \n// references in sql(psql)\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
