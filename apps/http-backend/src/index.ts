@@ -23,7 +23,7 @@ app.post("/signup", async (req, res) => {
   }
 
   // try {
-  //   await prisma.user.create({
+  //   await prisma.User.create({
   //     data: {
   //       email: parsedData.data?.username,
   //       password: parsedData.data.password,
