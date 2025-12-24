@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id    String   @id @default(uuid())
+  email String?  @unique 
+  password String
+  name String
+  photo String?
+  rooms Room[] // one to many relationships &&  you have to introduce it to both the places...
+  chats Chat[]
+}
+
+model Room {
+  id Int @id @default(autoincrement())
+  slug String @unique
+  createdAt DateTime @default(now())
+  admidId String
+  admin User @relation(fields: [admidId], references: [id]) // relationships in prisma
+  chats  Chat[]
+} 
+
+model Chat {
+  id       Int  @id @default(autoincrement())
+  roomId   Int
+  message  String
+  userId   String
+  room     Room    @relation(fields: [roomId], references: [id])
+  user     User   @relation(fields: [userId], references: [id])
+}
+
+// Search..............................................
+// transaction in prisma & sql databases(psql)
+// foreign keys in sql (psql) && connections in mongoDB
+// relationships in sql 
+// references in sql(psql)
