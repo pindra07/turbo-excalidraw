@@ -12,6 +12,7 @@ import {
 import {prisma} from "@repo/db/client"
 
 const app = express();
+app.use(express.json());
 
 // username, password, email
 app.post("/signup", async (req, res) => {
@@ -22,20 +23,20 @@ app.post("/signup", async (req, res) => {
     });
   }
 
-  try {
-    //@ts-ignore
-    await prisma.User.create({
-      data: {
-        email: parsedData.data?.username,
-        password: parsedData.data.password,
-        name: parsedData.data.username,
-      },
-    });
-  } catch (e) {
-    res.status(411).json({
-      message: "User already exists...",
-    });
-  }
+  // try {
+  //   //@ts-ignore
+  //   await prisma.User.create({
+  //     data: {
+  //       email: parsedData.data?.username,
+  //       password: parsedData.data.password,
+  //       name: parsedData.data.username,
+  //     },
+  //   });
+  // } catch (e) {
+  //   res.status(411).json({
+  //     message: "User already exists...",
+  //   });
+  // }
 
   // user.findOne({username, password})
   // if found user... user already exist...
